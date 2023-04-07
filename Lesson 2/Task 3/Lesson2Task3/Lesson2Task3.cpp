@@ -34,7 +34,7 @@ void uniqueLockSwap(Data& d1, Data& d2)
 {
     std::unique_lock<std::mutex> unl_d1(d1.m, std::defer_lock);
     std::unique_lock<std::mutex> unl_d2(d2.m, std::defer_lock);
-    std::lock(d1.m, d2.m);
+    std::lock(unl_d1, unl_d2);
     Data temp(0);
     temp.x = d1.x;
     d1.x = d2.x;
